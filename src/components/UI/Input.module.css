@@ -4,19 +4,26 @@
     justify-content: flex-start;
     margin-bottom: 0.25rem;
     color: black;
-    transition: all 0.5s;
+    transition: all 0.2s;
 }
 
 .form-control input {
     border: 1px grey solid;
     border-radius: 5px;
-    padding-left: 0.25rem;
+    padding-left: 0.4rem;
     height: 30px;
-    transition: all 0.3s;
+    transition: all 0.1s;
 }
 
 .form-control label {
     margin-bottom: 0.15rem;
+}
+
+.form-control p {
+    margin-left: 0.5rem;
+    color: rgb(68, 68, 68);
+    margin-top: 0.35rem;
+    font-size: small;
 }
 
 .form-control input:focus {

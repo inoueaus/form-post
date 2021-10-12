@@ -10,7 +10,9 @@ const Input = (props) => {
         value={props.value}
         id={props.id}
         type={props.type}
+        placeholder={props.placeholder}
       ></input>
+      {props.description && <p>{props.description}</p>}
     </div>
   );
 };

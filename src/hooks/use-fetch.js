@@ -28,7 +28,6 @@ const useFetch = (config) => {
   }, []);
 
   useEffect(() => {
-    console.log("use fetch");
     if (config.body) {
       sendRequest(config);
     }
