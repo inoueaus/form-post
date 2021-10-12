@@ -1,0 +1,20 @@
+.button {
+    background: rgb(83, 1, 141);
+    border: 1px rgb(83, 1, 141) solid;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.5s;
+    font-weight: bold;
+    padding: 0 1.5rem 0 1.5rem;
+    height: 40px;
+}
+
+.button:hover {
+    background: rgb(116, 0, 199);
+    border: 1px rgb(116, 0, 199) solid;
+}
+
+.button:disabled {
+    background: grey;
+    border: 1px grey solid;
+}
