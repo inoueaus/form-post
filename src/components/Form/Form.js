@@ -3,9 +3,11 @@ import useFetch from "../../hooks/use-fetch";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
+import Modal from "../UI/Modal";
 import { useState } from "react";
 
 const Form = () => {
+  const [showModal, setShowModal] = useState(false);
   const [config, setConfig] = useState({
     uri: "https://react-studies-742e1-default-rtdb.firebaseio.com/form.json",
     method: "POST",
@@ -25,7 +27,9 @@ const Form = () => {
 
   const formValid = username.isValid && phoneNumber.isValid;
 
-  console.log(fetchHandler.error, fetchHandler.loading, console.log(fetchHandler.data));
+  const toggleModal = () => {
+    setShowModal(prev => {return !prev});
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -36,12 +40,19 @@ const Form = () => {
         body: { username: username.value, phoneNumber: phoneNumber.value },
       };
     });
-
+    setShowModal(true);
     username.reset();
     phoneNumber.reset();
   };
   return (
     <Card>
+      {showModal && (
+        <Modal>
+          <h3>Successfully submitted form!</h3>
+          <p style={{"margin-bottom": "3rem"}}>{fetchHandler.data ? fetchHandler.data.name : "Loading..."}</p>
+          <Button onClick={toggleModal}>Close</Button>
+        </Modal>
+      )}
       <form onSubmit={submitHandler}>
         <Input
           id="username"

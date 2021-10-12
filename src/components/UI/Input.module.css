@@ -4,6 +4,7 @@
     justify-content: flex-start;
     margin-bottom: 0.25rem;
     color: black;
+    transition: all 0.5s;
 }
 
 .form-control input {
@@ -11,6 +12,7 @@
     border-radius: 5px;
     padding-left: 0.25rem;
     height: 30px;
+    transition: all 0.3s;
 }
 
 .form-control label {
@@ -23,6 +25,10 @@
     border-color: rgb(149, 0, 255);
 }
 
+.form-control input:hover {
+    border-color: rgb(214, 158, 253);
+}
+
 .form-control.invalid input {
     background: rgb(255, 235, 235);
     border-color: rgb(255, 53, 53);
@@ -31,4 +37,14 @@
 .form-control.invalid label {
     color: rgb(190, 1, 1);
     font-weight: 500;
+}
+
+.form-control.invalid input:focus {
+    outline: none;
+    background: rgb(243, 233, 255);
+    border-color: rgb(149, 0, 255);
+}
+
+.form-control.invalid input:hover {
+    border-color: rgb(214, 158, 253);
 }
