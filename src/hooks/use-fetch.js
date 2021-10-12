@@ -7,6 +7,7 @@ const useFetch = (config) => {
 
   const sendRequest = useCallback(async (config) => {
     setLoading(true);
+    setData(null);
     try {
       const result = await fetch(config.uri, {
         method: config.method,

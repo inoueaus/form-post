@@ -28,8 +28,10 @@ const Form = () => {
   const formValid = username.isValid && phoneNumber.isValid;
 
   const toggleModal = () => {
-    setShowModal(prev => {return !prev});
-  }
+    setShowModal((prev) => {
+      return !prev;
+    });
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -47,9 +49,14 @@ const Form = () => {
   return (
     <Card>
       {showModal && (
-        <Modal>
+        <Modal onClick={toggleModal}>
           <h3>Successfully submitted form!</h3>
-          <p style={{"margin-bottom": "3rem"}}>{fetchHandler.data ? fetchHandler.data.name : "Loading..."}</p>
+          <p style={{ marginBottom: "3rem" }}>
+            Status:{" "}
+            {fetchHandler.data
+              ? "Form received! " + fetchHandler.data.name
+              : "Loading..."}
+          </p>
           <Button onClick={toggleModal}>Close</Button>
         </Modal>
       )}
@@ -61,9 +68,8 @@ const Form = () => {
           onChange={username.inputHandler}
           onBlur={username.blurHandler}
           value={username.value}
-        >
-          Username
-        </Input>
+          label="Username"
+        />
         <Input
           id="phoneNumber"
           type="phonenumber"
@@ -71,10 +77,13 @@ const Form = () => {
           onChange={phoneNumber.inputHandler}
           onBlur={phoneNumber.blurHandler}
           value={phoneNumber.value}
+          label="Phone Number"
+        />
+        <Button
+          style={{ marginTop: "1rem" }}
+          disabled={!formValid}
+          type="submit"
         >
-          Phone Number
-        </Input>
-        <Button disabled={!formValid} type="submit">
           {fetchHandler.loading ? "Sending..." : "Submit"}
         </Button>
       </form>
