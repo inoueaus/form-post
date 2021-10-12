@@ -6,9 +6,13 @@ import Input from "../UI/Input";
 const Form = () => {
   const username = useInput((value) => {
     return (
-      !"!#$%&'*+-/=?^_`{|}~ \"(),:;<>@[]\\".split("").some((char) => value.includes(char)) &&
-      value.length > 0
+      !"!#$%&'*+-/=?^_`{|}~ \"(),:;<>@[]\\"
+        .split("")
+        .some((char) => value.includes(char)) && value.length > 0
     );
+  });
+  const phoneNumber = useInput((value) => {
+    return /^\d{1,}-\d{1,4}-\d{4}$/.test(value);
   });
 
   const formValid = username.isValid;
@@ -16,6 +20,7 @@ const Form = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(username.value, username.isValid, username.touched);
+    console.log(phoneNumber.value,phoneNumber.isValid)
   };
   return (
     <Card>
@@ -30,7 +35,19 @@ const Form = () => {
         >
           Username
         </Input>
-        <Button disabled={!formValid} type="submit">Submit</Button>
+        <Input
+          id="phoneNumber"
+          type="phonenumber"
+          className={!phoneNumber.isValid && phoneNumber.touched && "invalid"}
+          onChange={phoneNumber.inputHandler}
+          onBlur={phoneNumber.blurHandler}
+          value={phoneNumber.value}
+        >
+          Phone Number
+        </Input>
+        <Button disabled={!formValid} type="submit">
+          Submit
+        </Button>
       </form>
     </Card>
   );
